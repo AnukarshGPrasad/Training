@@ -7,3 +7,6 @@ c:\users\prasaanu\documents\visual studio 2015\Projects\ShapeAreaCalculator\Shap
 C:\Users\prasaanu\Desktop\TrainingGit\ShapeAreaCalculator\ShapeAreaCalculator\bin\Debug\ShapeAreaCalculator.exe.config
 C:\Users\prasaanu\Desktop\TrainingGit\ShapeAreaCalculator\ShapeAreaCalculator\obj\Debug\ShapeAreaCalculator.exe
 C:\Users\prasaanu\Desktop\TrainingGit\ShapeAreaCalculator\ShapeAreaCalculator\obj\Debug\ShapeAreaCalculator.pdb
+C:\Users\prasaanu\Desktop\TrainingGit\ShapeAreaCalculator\ShapeAreaCalculator\bin\Debug\ShapeAreaCalculator.exe
+C:\Users\prasaanu\Desktop\TrainingGit\ShapeAreaCalculator\ShapeAreaCalculator\bin\Debug\ShapeAreaCalculator.pdb
+C:\Users\prasaanu\Desktop\TrainingGit\ShapeAreaCalculator\ShapeAreaCalculator\obj\Debug\ShapeAreaCalculator.csprojResolveAssemblyReference.cache

@@ -67,6 +67,7 @@ namespace ShapeAreaCalculator
         {
             if (dimensions.Length != 2)
             {
+
                 throw new Exception("Wrong Number of input values for Rectangle");
             }
             if (dimensions[0] < 0 || dimensions[1] < 0)
