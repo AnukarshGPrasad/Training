@@ -13,13 +13,13 @@ namespace EmployeeDetailsCRUDApplication
 {
     public class EmployeeController : ApiController
      {
-        private static readonly IEmployeeRepository _employee = new EmployeeRepository();
+        private static readonly AbstractionClass _employee = new AbstractionClass();
 
         public HttpResponseMessage Get(string id)
         { 
             if (id=="all")
             {
-               var result = _employee.GetAllEmployee().AsQueryable();
+               var result = _employee.GetAllEmployees().AsQueryable();
                 if (result != null)
                     return Request.CreateResponse(HttpStatusCode.OK, result);
                 else
@@ -27,7 +27,7 @@ namespace EmployeeDetailsCRUDApplication
             }
             else
             {
-                var  result = _employee.GetEmployee(id);
+                var  result = _employee.GetEmployeeById(id);
                 if (result != null)
                     return Request.CreateResponse(HttpStatusCode.OK, result);
                 else
@@ -37,17 +37,18 @@ namespace EmployeeDetailsCRUDApplication
 
         public HttpResponseMessage Post(Employee EmployeeObject)
         {
-            var result = _employee.AddEmployee(EmployeeObject);
-            if (result != null)
+            var result = _employee.InsertEmployee(EmployeeObject);
+            if (result == 1)
                 return Request.CreateResponse(HttpStatusCode.OK);
             else
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Couldnt Insert the record");
+
         }
 
         public HttpResponseMessage Put(string id, Employee value)
         {
             var result = _employee.UpdateEmployee(id, value);
-            if (result != false)
+            if (result == 1)
                 return Request.CreateResponse(HttpStatusCode.OK);
             else
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Couldnt Fetch All Employees");
@@ -63,20 +64,20 @@ namespace EmployeeDetailsCRUDApplication
 
                  if (ids.Length == 1)
                  {
-                     var result = _employee.RemoveEmployee(ids[0]);
-                if (result != false)
+                     var result = _employee.DeleteOneEmployee(ids[0]);
+                if (result == 1)
                     return Request.CreateResponse(HttpStatusCode.OK);
                 else
                     return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Couldnt Fetch All Employees");
             }
                  else
                 {
-                    var result  = false;
+                    var result  = 0;
                      foreach (var item in ids)
                      {
-                          result = _employee.RemoveEmployee(item);
+                          result = _employee.DeleteOneEmployee(item);
                      }
-                if (result != false)
+                if (result == 1)
                     return Request.CreateResponse(HttpStatusCode.OK);
                 else
                     return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Couldnt Fetch All Employees");

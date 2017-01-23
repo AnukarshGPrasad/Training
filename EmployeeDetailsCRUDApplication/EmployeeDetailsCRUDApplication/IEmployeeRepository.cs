@@ -12,7 +12,7 @@ namespace EmployeeDetailsCRUDApplication
 
         Employee GetEmployee(string id);
 
-        Employee AddEmployee(Employee item);
+        bool AddEmployee(Employee item);
 
         bool RemoveEmployee(string id);
 

@@ -22,32 +22,15 @@ namespace EmployeeDetailsCRUDApplication
                 _employees = Client.GetDatabase("Employee").GetCollection<Employee>("EmployeeDetails");
         }
 
-        public Employee AddEmployee(Employee NewEmployee)
+        public bool AddEmployee(Employee NewEmployee)
         {
-            Validate(NewEmployee);
-
             NewEmployee.Id = ObjectId.GenerateNewId();
             _employees.InsertOne(NewEmployee);
-            return NewEmployee;
+            if (NewEmployee != null)
+                return true;
+            else
+                return false;
 
-        }
-
-        public static void Validate(Employee NewEmployee)
-        {
-            if (NewEmployee.FirstName == null)
-                throw new Exception("FirstName cannot be NUll");
-            if (NewEmployee.LastName == null)
-                throw new Exception("LastName cannot be Null");
-            if (NewEmployee.Email == null)
-                throw new Exception("Email cannot be empty");
-            try
-            {
-                System.Net.Mail.MailAddress NewEmployeeEmail = new System.Net.Mail.MailAddress(NewEmployee.Email);
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message + "Email Is not valid");
-            }
         }
 
         public IEnumerable<Employee> GetAllEmployee()
@@ -65,13 +48,8 @@ namespace EmployeeDetailsCRUDApplication
 
         public bool RemoveEmployee(string id)
         {
-
             var ObjId = ObjectId.Parse(id);
             var EmployeeObject =  _employees.Find(_ => _.Id == ObjId).Single();
-
-            if(EmployeeObject.Status == "Activated")
-                throw new Exception("Activated Employee cant be deleted");
-
             var filter = Builders<Employee>.Filter.Eq("Id", ObjId);
             var result = _employees.DeleteOne(filter);
             return result.IsAcknowledged; 
@@ -79,7 +57,6 @@ namespace EmployeeDetailsCRUDApplication
 
         public bool UpdateEmployee(string id, Employee NewEmployee)
         {
-            Validate(NewEmployee);
 
             var Objid = ObjectId.Parse(id);
             var filter = Builders<Employee>.Filter.Eq("Id", Objid);
