@@ -9,6 +9,11 @@ namespace EmployeeDetailsCRUDApplication
 {
     public class Employee
     {
+
+        public Employee()
+        {
+
+        }
         [BsonId]
         public ObjectId Id { get; set; }
 

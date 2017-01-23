@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace EmployeeDetailsCRUDApplication
@@ -14,6 +15,8 @@ namespace EmployeeDetailsCRUDApplication
         Employee AddEmployee(Employee item);
 
         bool RemoveEmployee(string id);
+
+        //bool RemoveManyEmployee(params string[] id);
 
         bool UpdateEmployee(string id, Employee item);
     }
