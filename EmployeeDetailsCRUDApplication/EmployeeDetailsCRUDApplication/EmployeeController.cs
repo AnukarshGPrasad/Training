@@ -15,24 +15,22 @@ namespace EmployeeDetailsCRUDApplication
      {
         private static readonly AbstractionClass _employee = new AbstractionClass();
 
-        public HttpResponseMessage Get(string id)
-        { 
-            if (id=="all")
-            {
-               var result = _employee.GetAllEmployees().AsQueryable();
+        public HttpResponseMessage Get()
+        {
+                var result = _employee.GetAllEmployees().AsQueryable();
                 if (result != null)
                     return Request.CreateResponse(HttpStatusCode.OK, result);
                 else
-                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Couldnt Fetch All Employees");
-            }
-            else
-            {
+                    return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Couldnt Fetch All Employees");      
+        }
+
+        public HttpResponseMessage Get(string id)
+        {     
                 var  result = _employee.GetEmployeeById(id);
                 if (result != null)
                     return Request.CreateResponse(HttpStatusCode.OK, result);
                 else
                     return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Couldnt Fetch All Employees");
-            }
         }
 
         public HttpResponseMessage Post(Employee EmployeeObject)
@@ -47,6 +45,7 @@ namespace EmployeeDetailsCRUDApplication
 
         public HttpResponseMessage Put(string id, Employee value)
         {
+            value.Id = ObjectId.Parse(id);
             var result = _employee.UpdateEmployee(id, value);
             if (result == 1)
                 return Request.CreateResponse(HttpStatusCode.OK);

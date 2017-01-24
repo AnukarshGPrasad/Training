@@ -100,12 +100,14 @@ namespace EmployeeDetailsCRUDApplication.Tests.Controllers
         [TestMethod]
         public void DeleteMethodCalled_withActivatedObjectId_ThrowsException()
         {
-            var temp = "588651bf3fd2a02c201a33f9";
+            var temp = "58873c223fd18a04701c04fa";
 
-            var mockEmployeeRepository = MockRepository.GenerateMock<IEmployeeRepository>();
-            mockEmployeeRepository.Expect(x => x.RemoveEmployee(temp)).Return(true);
+           var mockEmployeeRepository = MockRepository.GenerateMock<IEmployeeRepository>();
+           mockEmployeeRepository.Expect(x => x.GetEmployee(temp)).Return(EmployeeObject);
+           mockEmployeeRepository.Expect(x => x.RemoveEmployee(temp)).Return(true);
+           
 
-            AbstractionClass mockEmpCrtl = new AbstractionClass();
+            AbstractionClass mockEmpCrtl = new AbstractionClass(mockEmployeeRepository);
             try
             {
                 mockEmpCrtl.DeleteOneEmployee(temp);
