@@ -22,7 +22,7 @@ namespace EmployeeDetailsCRUDApplication.Tests.Controllers
             var mockEmployeeRepository = MockRepository.GenerateMock<IEmployeeRepository>();
             mockEmployeeRepository.Expect(x => x.AddEmployee(EmployeeObject)).Return(true);
 
-            AbstractionClass mockEmpCrtl = new AbstractionClass();
+            AbstractionClass mockEmpCrtl = new AbstractionClass(mockEmployeeRepository);
 
             Assert.AreEqual(1, mockEmpCrtl.InsertEmployee(EmployeeObject));
         }
@@ -100,7 +100,6 @@ namespace EmployeeDetailsCRUDApplication.Tests.Controllers
         [TestMethod]
         public void DeleteMethodCalled_withActivatedObjectId_ThrowsException()
         {
-
             var temp = "588651bf3fd2a02c201a33f9";
 
             var mockEmployeeRepository = MockRepository.GenerateMock<IEmployeeRepository>();
@@ -115,7 +114,6 @@ namespace EmployeeDetailsCRUDApplication.Tests.Controllers
             {
                 Assert.AreEqual("Activated Employee cant be deleted", e.Message);
             }
-
         }
     }
 }
