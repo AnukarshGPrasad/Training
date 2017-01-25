@@ -109,19 +109,19 @@
                     <div class="form-group">
                         <label for="inputFirstname" class="col-lg-2 control-label">First Name</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" id="inputFirstName" ng-model="firstname" placeholder="First Name">
+                            <input type="text"  required  class="form-control" id="inputFirstName" ng-model="firstname" placeholder="First Name">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputLastname" class="col-lg-2 control-label">Last Name</label>
                         <div class="col-lg-10">
-                            <input type="text"  ng-model="lastname" class="form-control" id="inputLastName" placeholder="Last Name">
+                            <input type="text" required ng-model="lastname" class="form-control" id="inputLastName" placeholder="Last Name">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputEmail" class="col-lg-2 control-label">Email</label>
                         <div class="col-lg-10">
-                            <input type="text" ng-model="email" class="form-control" id="inputEmail" placeholder="Email">
+                            <input type="text" required ng-model="email" class="form-control" id="inputEmail" placeholder="Email">
                         </div>
                     </div>
                     <div class="form-group">
@@ -140,7 +140,7 @@
                     <div class="form-group">
                         <label for="selectActivation" class="col-lg-2 control-label">Activation</label>
                         <div class="col-lg-10">
-                            <select class="form-control" id="Insertselect" ng-model="status">
+                            <select class="form-control" required id="Insertselect" ng-model="status">
                                 <option>Activated</option>
                                 <option>Deactivated</option>
                             </select>
@@ -195,19 +195,19 @@
                     <div class="form-group">
                         <label for="UpdateinputFirstname" class="col-lg-2 control-label">First Name</label>
                         <div class="col-lg-10">
-                            <input type="text" ng-model="Firstname" class="form-control" id="UpdateinputFirstName" placeholder="First Name">
+                            <input type="text" required ng-model="Firstname" class="form-control" id="UpdateinputFirstName" placeholder="First Name">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="UpdateinputLastname" class="col-lg-2 control-label">Last Name</label>
                         <div class="col-lg-10">
-                            <input type="text" ng-model="Lastname" class="form-control" id="UpdateinputLastName" placeholder="Last Name">
+                            <input type="text" required ng-model="Lastname" class="form-control" id="UpdateinputLastName" placeholder="Last Name">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="UpdateinputEmail" class="col-lg-2 control-label">Email</label>
                         <div class="col-lg-10">
-                            <input type="text" ng-model="Email" class="form-control" id="UpdateinputEmail" placeholder="Email" disabled="disabled">
+                            <input type="text" required ng-model="Email" class="form-control" id="UpdateinputEmail" placeholder="Email" disabled="disabled">
                         </div>
                     </div>
                     <div class="form-group">
@@ -246,6 +246,8 @@
                     </div>
                 </fieldset>
             </form>
+
+            <a class="btn btn-default pull-right" href="#top">Back to Top</a>
 
         </div>
 
@@ -287,6 +289,6 @@
                 <a href="#" class="btn btn-primary btn-lg btn-block">Delete</a>
             </div>*@
         </div>
-
+        <a class="btn btn-default pull-right" href="#top">Back to Top</a>
     </div>
 </div>
