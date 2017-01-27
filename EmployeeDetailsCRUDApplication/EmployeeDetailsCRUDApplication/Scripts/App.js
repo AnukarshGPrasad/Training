@@ -35,7 +35,7 @@ app.controller('CrudController', function ($scope, $http) {
             $scope.email = emp.Email;
             $scope.address = emp.Address;
             $scope.status = emp.Status;
-
+            sleep(2000);
             console.log(response.message);
 
         }, function errorCallback(response) {
@@ -88,20 +88,20 @@ app.controller('CrudController', function ($scope, $http) {
     $scope.RemoveEmployee = function (id) {
         var url = "http://localhost:1335/api/Employee/" + id;
         $scope.GetEmployees(id);
+        sleep(2000);
+        console.log($scope.status);
         if ($scope.status != "Deactivated") {
             alert("Activated Employee cant be deleted! Try Updating");
             return;
         }
-
-
-                $http.delete(url).then(function onSuccessCallback(response) {
-                    console.log(response);
-                    $scope.GetAllEmployees();
-                    $scope.ClearAllEmployees();
-                }, function onErrorCallback(response) {
-                    console.log(response);
-                });
-            }
+        $http.delete(url).then(function onSuccessCallback(response) {
+                 console.log(response);
+                 $scope.GetAllEmployees();
+                 $scope.ClearAllEmployees();
+        }, function onErrorCallback(response) {
+                 console.log(response);
+        });
+    }
 
     $scope.UpdateEmployee = function () {
         console.log("updateemployee");
@@ -121,6 +121,43 @@ app.controller('CrudController', function ($scope, $http) {
                 function onErrorCallback(response) {
                     console.log(response);
                 });
+    }
+
+    $scope.DeleteMultipleEmployee = function()
+    {
+        $scope.employees1 = [];
+        var url = "http://localhost:1335/api/Employee/";
+        $http.get(url).then(function OnSuccessCallBackGetAllEmployee(response) {
+            $scope.employees1 = response.data;
+            var confirmation = confirm("Are you sure you wanna delete all deactivated employees?");
+            if (confirmation) {
+                for (var i = 0; i<$scope.employees1.length; i++)
+                {
+                    if ($scope.employees1[i].Status == "Deactivated")
+                        $scope.RemoveEmployee($scope.employees1[i].Id);
+                }
             }
+
+            console.log($scope.employees);
+            $scope.GetAllEmployees();
+        }, function errorCallback(response) {
+            $scope.message = response.message;
+            console.log($scope.message);
+        
+        });
+
+
+    }
+
+    function sleep(milliseconds) {
+        var start = new Date().getTime();
+        for (var i = 0; i < 1700000000000 ; i++) {
+            if ((new Date().getTime() - start) > milliseconds) {
+                break;
+            }
+        }
+    }
+
+
        
 });

@@ -55,32 +55,32 @@ namespace EmployeeDetailsCRUDApplication
 
         public HttpResponseMessage Delete(string id)
         {
-                 if(id == null)
-                 {
-                         throw new Exception("ID is Null");
-                 }
-                 string[] ids = id.Split(',');
+            if (id == null)
+            {
+                throw new Exception("ID is Null");
+            }
+            string[] ids = id.Split(',');
 
-                 if (ids.Length == 1)
-                 {
-                     var result = _employee.DeleteOneEmployee(ids[0]);
+            if (ids.Length == 1)
+            {
+                var result = _employee.DeleteOneEmployee(ids[0]);
                 if (result == 1)
                     return Request.CreateResponse(HttpStatusCode.OK);
                 else
                     return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Couldnt Fetch All Employees");
             }
-                 else
+            else
+            {
+                var result = 0;
+                foreach (var item in ids)
                 {
-                    var result  = 0;
-                     foreach (var item in ids)
-                     {
-                          result = _employee.DeleteOneEmployee(item);
-                     }
+                    result = _employee.DeleteOneEmployee(item);
+                }
                 if (result == 1)
                     return Request.CreateResponse(HttpStatusCode.OK);
                 else
                     return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Couldnt Fetch All Employees");
-            }        
+            }
         }
     }
 }

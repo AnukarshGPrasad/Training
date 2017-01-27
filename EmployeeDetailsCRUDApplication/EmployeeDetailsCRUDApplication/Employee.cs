@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Threading.Tasks;
 
 namespace EmployeeDetailsCRUDApplication
 {
@@ -40,5 +41,9 @@ namespace EmployeeDetailsCRUDApplication
 
         public string Status { get; set; }
 
+        public static explicit operator Employee(Task<Employee> v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
